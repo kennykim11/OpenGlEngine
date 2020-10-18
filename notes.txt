@@ -1,0 +1,53 @@
+Shader: Handles data on graphics card
+Graphics pipeline: 
+Vertex: Manipulation of vertex data from the vertex buffer
+Tessilation Control shader: Divides geometry into teselation (turns low poly into high poly)
+Tesilation Evalutation shader: Manipulating shaders after its devided
+Geometry shader: Takes topology and can generate geometries, can turn a point of a effect into a quad
+Rasterizer (Not a shader): Turns all geometry into pixels, interpolates color, uv coord
+Pixel or Fragment Shader: Maniulates colors of all pixels
+Output Merger: What's on top of what things
+
+Compute pipeline:
+Compute Shader: For misc calculations
+
+(RTX) Ray Tracing Pipeline:
+Ray Generation
+Bounce shader
+Miss shader
+
+Meshlet Pipeline:
+Meshlet shader: Divides geometry into smaller bits that are somehow easier to compute
+Task Shader: Kinda like compute
+Rasterizer
+Fragment
+Output merger
+
+Commands:
+glBufferData stores vector data from CPU into buffer data in VRAM
+glVertexAttribPointer specifies which floats in a vertex are for position and which for color
+
+A model can have multiple objects. 
+Vertex Array Objects store all the pointers to buffers associated with the object.
+Vertex Buffer Objects store pointers of objects like position and verticies
+
+Graphics libraries draw onto a virtual canvas then swap the the virtual and the displayed ones.
+
+For each object, we bind the VAO and VBO, build, then unbind to "focus" on a new buffer.
+This happens before we even start the game loop.
+
+2 types of shaders:
+	Fragment shaders: rasterized color
+		Can dividde up a pixel into multiple fragments for antialiasing
+	Vertex shader: color interpolated from vertexes
+
+Uniforms are for passing arguments to shaders
+	Kinda like how assembly passes by putting into registers then calling it
+
+"Programs" are written in GLSL (GL Shading Language) .frag and .vert
+	Compiled once at runtime and given a handle //Since different GPUs have different microinstructions
+	Select one program to use at a time with useProgram()
+		Like a state machine
+
+Index Buffer
+	Array of pointers into the vertex buffer
